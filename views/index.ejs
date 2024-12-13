@@ -8,6 +8,9 @@
             <% messages.forEach((message) => { %>
                 <li>
                     <%= message.user %> sent "<%= message.text %>" at <%= message.added %>
+                    <a href="/message/<%= message.id %>">
+                        <button type="button">Open</button>
+                    </a>
                 </li>
             <% }); %>
         </ul>
