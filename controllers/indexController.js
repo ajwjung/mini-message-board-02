@@ -1,9 +1,10 @@
 const db = require("../db");
+const messagesDb = require("../db/queries");
 const CustomNotFoundError = require("../errors/CustomNotFoundError");
 const asyncHandler = require("express-async-handler");
 
 const renderMessages = asyncHandler(async (req, res, next) => {
-    const allMessages = await db.getAllMessages();
+    const allMessages = await messagesDb.getAllMessages();
     res.render("index", { title: "Mini Message Board", messages: allMessages });
 });
 
