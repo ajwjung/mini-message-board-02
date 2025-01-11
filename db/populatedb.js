@@ -21,11 +21,15 @@ async function main() {
   
   const client = new Client({
     connectionString: process.env.CONNECTION_URI,
+    ssl: {
+      rejectUnauthorized: false, // Required for insecure SSL connections
+    },
   });
+  
   await client.connect();
   await client.query(SQL);
   await client.end();
-  console.log("done");
+  console.log("Done");
 }
 
-main();
+// main();

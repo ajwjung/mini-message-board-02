@@ -1,4 +1,3 @@
-const db = require("../db");
 const messagesDb = require("../db/queries");
 const CustomNotFoundError = require("../errors/CustomNotFoundError");
 const asyncHandler = require("express-async-handler");
@@ -15,7 +14,7 @@ const renderForm = asyncHandler(async (req, res, next) => {
 const postMessageContents = asyncHandler(async (req, res, next) => {
     const data = req.body;
 
-    await db.addNewMessage(data.messageText, data.userName);
+    await messagesDb.addNewMessage(data.messageText, data.userName);
 
     res.redirect("/");
 });
@@ -23,13 +22,13 @@ const postMessageContents = asyncHandler(async (req, res, next) => {
 const getMessageById = asyncHandler(async (req, res, next) => {
     const messageId = req.params.messageId;
     
-    const message = await db.getMessageById(parseInt(messageId));
+    const message = await messagesDb.getMessageById(parseInt(messageId));
     
     if (!message) {
         throw new CustomNotFoundError("Message not found");
     };
-
-    res.render("message", { title: "User Message", message });
+    
+    res.render("message", { title: "User Message", message: message[0] });
 });
 
 module.exports = { renderMessages, renderForm, postMessageContents, getMessageById };
