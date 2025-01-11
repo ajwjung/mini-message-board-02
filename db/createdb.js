@@ -11,10 +11,6 @@ CREATE TABLE IF NOT EXISTS messages (
     username VARCHAR ( 255 ),
     added TIMESTAMP DEFAULT NOW()
   );
-
-INSERT INTO messages (text, username)
-  VALUES ('I like pie', 'Mario'),
-         ('Buhh...', 'Patrick');
 `;
 async function main() {
   console.log("Seeding...");
@@ -32,4 +28,4 @@ async function main() {
   console.log("Done");
 }
 
-// main();
+main();
