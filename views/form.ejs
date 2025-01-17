@@ -7,11 +7,11 @@
         <form method="POST" action="/new">
             <span>
                 <label for="user">Name: </label>
-                <input type="text" name="userName" id="user">
+                <input type="text" name="userName" id="user" pattern="[A-Za-z\d]+">
             </span>
             <span>
                 <label for="text">Message: </label>
-                <input type="text" name="messageText" id="text">
+                <input type="text" name="messageText" id="text" minlength="1" maxlength="255">
             </span>
             <button type="submit">Submit</button>            
         </form>
