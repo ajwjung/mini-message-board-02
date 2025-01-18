@@ -2,12 +2,17 @@ require("dotenv").config();
 
 const path = require("path");
 const express = require("express");
+const methodOverride = require('method-override');
 
 const indexRouter = require("./routes/index.js");
 
 const app = express();
 
+// Read form data from `req.body`
 app.use(express.urlencoded({ extended: true }));
+
+// Allow method override to simulate DELETE with POST
+app.use(methodOverride('_method'));
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");

@@ -54,4 +54,18 @@ const getMessageById = asyncHandler(async (req, res, next) => {
     res.render("message", { title: "User Message", message: message[0] });
 });
 
-module.exports = { renderMessages, renderForm, createMessagePost, getMessageById };
+const deleteMessageById = asyncHandler(async(req, res, next) => {
+    const messageId = req.params.messageId;    
+
+    await messagesDb.deleteMessageById(parseInt(messageId));
+
+    res.redirect("/");
+});
+
+module.exports = { 
+    renderMessages, 
+    renderForm, 
+    createMessagePost, 
+    getMessageById, 
+    deleteMessageById 
+};
