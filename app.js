@@ -4,7 +4,7 @@ const path = require("path");
 const express = require("express");
 const methodOverride = require('method-override');
 
-const indexRouter = require("./routes/index.js");
+const indexRouter = require("./routes/messagesRouter.js");
 
 const app = express();
 
