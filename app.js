@@ -11,7 +11,7 @@ const app = express();
 // Read form data from `req.body`
 app.use(express.urlencoded({ extended: true }));
 
-// Allow method override to simulate DELETE with POST
+// Allow method override to DELETE and PUT
 app.use(methodOverride('_method'));
 
 app.set("views", path.join(__dirname, "views"));

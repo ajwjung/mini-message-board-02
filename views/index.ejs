@@ -11,6 +11,9 @@
                     <a href="/message/<%= message.id %>">
                         <button type="button">Open</button>
                     </a>
+                    <a href="/message/<%= message.id %>/edit">
+                        <button type="button">Edit Message</button>
+                    </a>
                     <form action="/message/<%= message.id %>?_method=DELETE" method="POST">
                         <button type="submit">Delete Message</button>
                     </form>

@@ -4,18 +4,32 @@
     </head>
     <body>
         <h1><%= title %></h1>
-        <form method="POST" action="/new">
+        <form method="POST" action="
+            <%= message ? '/message/' + message.id + '?_method=PUT' : '/new' %>"
+        >
             <span>
                 <label for="user">Name: </label>
-                <input type="text" name="userName" id="user" pattern="[A-Za-z\d]+">
+                <input 
+                    type="text" 
+                    name="userName" 
+                    id="user" 
+                    pattern="[A-Za-z\d]+" 
+                    value="<%= message ? message.username : '' %>"
+                >
             </span>
             <span>
                 <label for="text">Message: </label>
-                <input type="text" name="messageText" id="text" minlength="1" maxlength="255">
+                <input 
+                    type="text" 
+                    name="messageText" 
+                    id="text" 
+                    minlength="1" 
+                    maxlength="255" 
+                    value="<%= message ? message.text : '' %>"
+                >
             </span>
-            <button type="submit">Submit</button>            
+            <button type="submit"><%- buttonText %></button>            
         </form>
-
         <a href="/">Back to home</a>
     </body>
 </html>

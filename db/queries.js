@@ -60,9 +60,28 @@ async function deleteMessageById(messageId) {
     }
 };
 
+async function editMessageById(messageId, text, username) {
+    try {
+        const SQL = `
+            UPDATE messages
+            SET text=($1), username=($2)
+            WHERE id=($3);
+        `;
+
+        await pool.query(SQL, [text, username, messageId]);
+    } catch (error) {
+        console.error("Error editing message in database", {
+            message: error.message,
+            stack: error.stack,
+            query: SQL
+        })
+    }
+}
+
 module.exports = {
     getAllMessages,
     getMessageById,
     addNewMessage,
-    deleteMessageById
+    deleteMessageById,
+    editMessageById
 }

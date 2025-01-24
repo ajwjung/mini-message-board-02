@@ -20,7 +20,7 @@ const renderMessages = asyncHandler(async (req, res, next) => {
 });
 
 const renderForm = asyncHandler(async (req, res, next) => {
-    res.render("form", { title: "New Message" });
+    res.render("form", { title: "New Message", message: null, buttonText: "Submit" });
 });
 
 const postMessageContents = asyncHandler(async (req, res, next) => {
@@ -62,10 +62,36 @@ const deleteMessageById = asyncHandler(async(req, res, next) => {
     res.redirect("/");
 });
 
+const renderEditForm = asyncHandler(async(req, res, next) => {
+    const messageId = req.params.messageId;
+    const existingMessages = await messagesDb.getMessageById(messageId);
+    
+    res.render("form", { 
+        title: "Edit Message",
+        message: existingMessages[0],
+        buttonText: "Save"
+    });
+});
+
+const editMessageById = asyncHandler(async(req, res, next) => {
+    const messageId = req.params.messageId;
+    const newMessageData = req.body;
+    
+    await messagesDb.editMessageById(
+        messageId, 
+        newMessageData.messageText, 
+        newMessageData.userName
+    );
+
+    res.redirect("/");
+});
+
 module.exports = { 
     renderMessages, 
     renderForm, 
     createMessagePost, 
     getMessageById, 
-    deleteMessageById 
+    deleteMessageById,
+    renderEditForm,
+    editMessageById
 };
