@@ -7,10 +7,11 @@ To become more familiar with Express and understand how to create routes, write 
 ## Built With
 
 - Express
+- PostgreSQL
 - EJS
 
 ## Features
 
-The message board displays all messages sent by users on the home page and users may send a new message using the form on the `/new` page. Users may open any message on the home page in a separate page to view details by clicking on the adjacent "Open" button.
+The message board displays all messages sent by users on the home page and users may send a new message using the form on the `/new` page. Users can open any message to view more details, edit a message, or delete a message using the respective buttons on the home page. All data is saved in a Render database.
 
-Because this is a very bare bones app created for learning purposes, it is unstyled and is not user friendly. There is no navbar or sidebar with quick links to easily navigate between pages.
+Because this is a very bare bones app created for learning purposes, it is unstyled and is not very user friendly. There is no navbar available, only simple links to take the user back to the home page.
